@@ -3,12 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Qvamar's Portfolio</title>
+    <title>Qamar's Portfolio</title>
+    <link rel="icon" type="image/webp" href="https://i.postimg.cc/fR2TnHhr/UTOPIA-BUTTERFLY-ZOOMED-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <style>
+      body, button, input, textarea, select {
+        font-family: 'Oooh Baby', cursive !important;
+      }
+    </style>
     <script>
       tailwind.config = {
         theme: {
           extend: {
+            fontFamily: {
+              sans: ['Oooh Baby', 'cursive'],
+            },
             colors: { primary: "#1a1a2e", secondary: "#16213e" },
             borderRadius: {
               none: "0px",
@@ -42,35 +52,60 @@
     />
     <style>
       :where([class^="ri-"])::before { content: "\f3c2"; }
+
+
+      
+      :root {
+        --space-dark: #05070b;
+        --space-darker: #030509;
+        --star-color: #a8b3cf;
+        --meteor-color: #7a8fcc;
+        --shooting-star-color: #ffffff;
+        --space-accent: #060a12;
+      }
+      
       body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #0f0f1a;
-      color: #fff;
-      overflow-x: hidden;
+        font-family: 'Montserrat', sans-serif;
+        background: radial-gradient(ellipse at bottom, var(--space-darker) 0%, var(--space-darker) 100%);
+        color: #e0e0e0;
+        overflow-x: hidden;
+        min-height: 100vh;
+        position: relative;
+        line-height: 1.6;
       }
-      .shooting-star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0 0 4px 1px white;
-      animation: shooting 5s linear infinite;
+
+
+      
+      /* Star styles are now inline in createStars() for better performance */
+      
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.1; }
+        50% { opacity: 0.8; }
       }
-      @keyframes shooting {
-      0% {
-      transform: translateX(0) translateY(0) rotate(45deg) scale(0);
-      opacity: 0;
+  
+      
+      .meteor {
+        position: fixed;
+        width: 200px;
+        height: 1px;
+        background: linear-gradient(90deg, 
+          rgba(74, 140, 255, 0) 0%, 
+          rgba(168, 199, 255, 0.8) 50%, 
+          rgba(74, 140, 255, 0) 100%);
+        transform: rotate(-45deg);
+        animation: meteorFall 4s linear infinite;
+        opacity: 0;
+        z-index: 0;
+        pointer-events: none;
+        filter: drop-shadow(0 0 10px rgba(168, 199, 255, 0.6));
       }
-      10% {
-      transform: translateX(10vw) translateY(10vh) rotate(45deg) scale(1);
-      opacity: 1;
+      
+      @keyframes meteorFall {
+        0% { transform: translateY(-50px) rotate(-45deg); opacity: 1; }
+        80% { opacity: 0.8; }
+        100% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
       }
-      100% {
-      transform: translateX(100vw) translateY(100vh) rotate(45deg) scale(0.5);
-      opacity: 0;
-      }
-      }
+      /* Shooting animation removed */
       .parallax {
       background-attachment: fixed;
       background-position: center;
@@ -100,23 +135,7 @@
       background-color: white;
       color: #0f0f1a;
       }
-      .faq-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-      }
-      .faq-item.active .faq-answer {
-      max-height: 500px;
-      }
-      .faq-toggle {
-      transition: transform 0.3s ease;
-      }
-      .faq-item.active .faq-toggle {
-      transform: rotate(180deg);
-      }
+     
       .clothing-card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
@@ -150,41 +169,67 @@
         opacity: 1;
         transform: translateY(0);
       }
+      /* FAQ */
+      .faq-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      }
+      .faq-item.active .faq-answer {
+      max-height: 500px;
+      }
+      .faq-toggle {
+      transition: transform 0.3s ease;
+      }
+      .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+      }
     </style>
   </head>
   <body>
     <!-- Navigation -->
     <nav
-      class="fixed top-0 left-0 w-full z-50 bg-transparent  transition-all duration-300"
+      class="fixed top-0 left-0 w-full z-50  transition-all duration-300"
     >
-      <div class="container mx-auto px-6 py-4">
+      <div class="container mx-auto px-4 py-3">
         <div class="flex justify-between items-center">
-          <a href="#" class="text-2xl font-['Pacifico'] text-white">Qvamar</a>
+          <a href="#" class="text-2xl md:text-3xl font-['Pacifico'] text-white">Qamar</a>
           <div class="hidden md:flex space-x-8">
             <a
               href="#hero"
-              class="nav-link text-white hover:text-gray-300 transition-colors"
+              class="nav-link text-white hover:text-gray-300 transition-colors text-lg"
               >Home</a
             >
             <a
+              href="#utopia"
+              class="nav-link text-white hover:text-gray-300 transition-colors text-lg"
+              >UTOPIA</a
+            >
+            <a
               href="#organizations"
-              class="nav-link text-white hover:text-gray-300 transition-colors"
+              class="nav-link text-white hover:text-gray-300 transition-colors text-lg"
               >Organizations</a
             >
             <a
               href="#clothing"
-              class="nav-link text-white hover:text-gray-300 transition-colors"
+              class="nav-link text-white hover:text-gray-300 transition-colors text-lg"
               >Clothing</a
             >
-          
             <a
               href="#faq"
-              class="nav-link text-white hover:text-gray-300 transition-colors"
+              class="nav-link text-white hover:text-gray-300 transition-colors text-lg"
               >FAQ</a
             >
           </div>
-          <div class="md:hidden w-10 h-10 flex items-center justify-center">
-            <button id="mobile-menu-button" class="text-white">
+          <div class="md:hidden">
+            <button 
+              id="mobile-menu-button" 
+              class="text-white p-2 rounded-md hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+              aria-label="Toggle menu"
+            >
               <i class="ri-menu-line ri-2x"></i>
             </button>
           </div>
@@ -193,28 +238,32 @@
       <!-- Mobile Menu -->
       <div
         id="mobile-menu"
-        class="hidden md:hidden bg-opacity-0"
+        class="hidden md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800 transition-all duration-300"
       >
-        <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+        <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
           <a
             href="#hero"
-            class="text-white hover:text-gray-300 transition-colors py-2"
+            class="text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors text-lg font-medium"
             >Home</a
           >
           <a
+            href="#utopia"
+            class="text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors text-lg font-medium"
+            >UTOPIA</a
+          >
+          <a
             href="#organizations"
-            class="text-white hover:text-gray-300 transition-colors py-2"
+            class="text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors text-lg font-medium"
             >Organizations</a
           >
           <a
             href="#clothing"
-            class="text-white hover:text-gray-300 transition-colors py-2"
+            class="text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors text-lg font-medium"
             >Clothing</a
           >
-         
           <a
             href="#faq"
-            class="text-white hover:text-gray-300 transition-colors py-2"
+            class="text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors text-lg font-medium"
             >FAQ</a
           >
         </div>
@@ -223,16 +272,16 @@
     <!-- Hero Section -->
     <section
       id="hero"
-      class="relative min-h-screen flex items-center justify-center overflow-hidden"
+      class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[var(--space-darker)] to-[var(--space-dark)]"
     >
-      <div class="star-field" id="star-field"></div>
+      <div class="absolute inset-0" id="star-field"></div>
       <div class="container mx-auto px-6 z-10">
         <div class="text-center max-w-3xl mx-auto">
           <h1
             class="text-5xl md:text-7xl font-bold mb-6 opacity-0 transform translate-y-10"
             id="hero-title"
           >
-            Qvamar's Portfolio
+            Qamar's Portfolio
           </h1>
           <p
             class="text-xl md:text-2xl text-gray-300 mb-10 opacity-0 transform translate-y-10"
@@ -254,8 +303,54 @@
         <i class="ri-arrow-down-line ri-2x text-white"></i>
       </div>
     </section>
+    <!--UTOPIA -->
+    <section id="utopia" class="py-24 bg-black relative" data-stars>
+      <div class="container mx-auto px-6">
+        <div
+          class="flex flex-col lg:flex-row items-center justify-between gap-12"
+        >
+          <div class="flex-1 text-center lg:text-left">
+            <h2 class="text-4xl font-bold mb-6">Join UTOPIA Industries</h2>
+            <p class="text-xl text-gray-400 mb-8">
+              UTOPIA Industries is a leading Roblox clothing group specializing in high-quality, custom apparel—from casual wear to roleplay outfits—crafted with originality and precision. Backed by experienced designers and industry mentorship, we prioritize client satisfaction and design excellence in every creation.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+              <a
+                href="https://discord.gg/fCpqGbxwWa"
+                class="inline-flex items-center justify-center gap-2 bg-[#5865F2] hover:bg-[#4752C4] text-white px-8 py-3 rounded-button transition-colors duration-300 whitespace-nowrap"
+              >
+                <i class="ri-discord-fill ri-lg"></i>
+                Join Discord
+              </a>
+              <a
+              href="https://www.roblox.com/communities/35949805/U-OPI-Industries#!/about"
+              class="inline-flex items-center justify-center gap-2 bg-[#5865F2] hover:bg-[#4752C4] text-white px-8 py-3 rounded-button transition-colors duration-300 whitespace-nowrap"
+            >
+              <i class="ri-information-fill ri-lg"></i>
+              Roblox Group
+            </a>
+            </div>
+          </div>
+          <div class="flex-1 relative">
+            <div
+              class="absolute -inset-4 bg-gradient-to-r from-[#5865F2] to-purple-600 rounded-lg opacity-30 blur-lg"
+            ></div>
+            <div class="relative">
+              <img 
+                src="https://i.postimg.cc/1RrS1WGr/image.webp" 
+                alt="UTOPIA Industries" 
+                class="w-full h-auto rounded-lg shadow-xl"
+                loading="lazy"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Organizations Section -->
-    <section id="organizations" class="py-24 relative overflow-hidden bg-black">
+    <section id="organizations" class="py-24 relative overflow-hidden bg-black" data-stars>
       <div class="container mx-auto px-6 relative z-10">
         <h2 class="text-4xl font-bold mb-16 text-center text-white">
           <span class="relative inline-block">
@@ -453,7 +548,7 @@
           <div class="clothing-card bg-gray-900 rounded overflow-hidden hidden" data-category="misc">
             <img src="https://via.placeholder.com/400x256/1f2937/ffffff?text=Designer+Scarf" alt="Designer Scarf" class="w-full h-64 object-cover" load="lazy">
             <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">TBD/h3>
+              <h3 class="text-xl font-semibold mb-2">TBD</h3>
               <p class="text-gray-400">
                 TBD
               </p>
@@ -472,197 +567,120 @@
         </div>
       </div>
     </section>
-    
-    <!-- FAQ Section -->
-    <section id="faq" class="py-24 bg-black">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold mb-16 text-center">
-          Frequently Asked Questions
-        </h2>
-        <div class="max-w-3xl mx-auto">
-          <!-- FAQ Item 1 -->
-          <div class="faq-item py-6">
-            <div class="flex justify-between items-center cursor-pointer">
-              <h3 class="text-xl font-semibold">
-                What types of clothing do you offer?
-              </h3>
-              <div class="w-8 h-8 flex items-center justify-center faq-toggle">
-                <i class="ri-arrow-down-s-line ri-xl text-white"></i>
-              </div>
-            </div>
-            <div class="faq-answer pt-4">
-              <p class="text-gray-400">
-                We offer all types of clothing, excluding NSFW, graphic content, inappropriate or harmful images/speech and anything that violates Roblox's Terms of Service and Guidelines.
-              </p>
-            </div>
-          </div>
-          <!-- FAQ Item 2 -->
-          <div class="faq-item py-6">
-            <div class="flex justify-between items-center cursor-pointer">
-              <h3 class="text-xl font-semibold">
-                How long will my order take?
-              </h3>
-              <div class="w-8 h-8 flex items-center justify-center faq-toggle">
-                <i class="ri-arrow-down-s-line ri-xl text-white"></i>
-              </div>
-            </div>
-            <div class="faq-answer pt-4">
-              <p class="text-gray-400">
-                Our designers work efficiently to ensure the highest quality of apparel your design will take no longer than 3-7 days.
-              </p>
-            </div>
-          </div>
-          <!-- FAQ Item 3 -->
-          <div class="faq-item py-6">
-            <div class="flex justify-between items-center cursor-pointer">
-              <h3 class="text-xl font-semibold">
-                How do I put in an order?
-              </h3>
-              <div class="w-8 h-8 flex items-center justify-center faq-toggle">
-                <i class="ri-arrow-down-s-line ri-xl text-white"></i>
-              </div>
-            </div>
-            <div class="faq-answer pt-4">
-              <p class="text-gray-400">
-                Join our communications server linked below! All information regarding orders will be there.
-              </p>
-            </div>
-          </div>
-          <!-- FAQ Item 4 -->
-          <div class="faq-item py-6">
-            <div class="flex justify-between items-center cursor-pointer">
-              <h3 class="text-xl font-semibold">
-                What's the pricing structure?
-              </h3>
-              <div class="w-8 h-8 flex items-center justify-center faq-toggle">
-                <i class="ri-arrow-down-s-line ri-xl text-white"></i>
-              </div>
-            </div>
-            <div class="faq-answer pt-4">
-              <p class="text-gray-400">
-                Our pricing depends on the complexity of the clothing/asset. Our minimum pricing for each shirt is r$350.
-              </p>
-            </div>
-          </div>
-           <!-- FAQ Item 5 -->
-           <div class="faq-item py-6">
-            <div class="flex justify-between items-center cursor-pointer">
-              <h3 class="text-xl font-semibold">
-              Can you recreate real-life clothing designs?
-              </h3>
-              <div class="w-8 h-8 flex items-center justify-center faq-toggle">
-                <i class="ri-arrow-down-s-line ri-xl text-white"></i>
-              </div>
-            </div>
-            <div class="faq-answer pt-4">
-              <p class="text-gray-400">
-                Yes, as long as it follows our ordering guidelines.
-              </p>
-            </div>
-          </div>
-          <!-- FAQ Item 6 -->
-          <div class="faq-item py-6">
-            <div class="flex justify-between items-center cursor-pointer">
-              <h3 class="text-xl font-semibold">
-                Can I order clothing assets? e.g: Logos, Awards, etc.
-              </h3>
-              <div class="w-8 h-8 flex items-center justify-center faq-toggle">
-                <i class="ri-arrow-down-s-line ri-xl text-white"></i>
-              </div>
-            </div>
-            <div class="faq-answer pt-4">
-              <p class="text-gray-400">
-                Yes! For more information, speak with a designer via our communications server.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Join UTOPIA -->
-    <section class="py-24 bg-gray-950">
+
+      <!-- FAQ Section -->
+      <section id="faq" class="py-24 bg-black">
         <div class="container mx-auto px-6">
-          <div
-            class="flex flex-col lg:flex-row items-center justify-between gap-12"
-          >
-            <div class="flex-1 text-center lg:text-left">
-              <h2 class="text-4xl font-bold mb-6">Join UTOPIA Industries</h2>
-              <p class="text-xl text-gray-400 mb-8">
-                UTOPIA Industries is a leading Roblox clothing group specializing in high-quality, custom apparel—from casual wear to roleplay outfits—crafted with originality and precision. Backed by experienced designers and industry mentorship, we prioritize client satisfaction and design excellence in every creation.
-              </p>
-              <div
-                class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              >
-                <a
-                  href="https://discord.gg/fCpqGbxwWa"
-                  class="inline-flex items-center justify-center gap-2 bg-[#5865F2] hover:bg-[#4752C4] text-white px-8 py-3 rounded-button transition-colors duration-300 whitespace-nowrap"
-                >
-                  <i class="ri-discord-fill ri-lg"></i>
-                  Join Discord
-                </a>
-                <a
-                href="https://www.roblox.com/communities/35949805/U-OPI-Industries#!/about"
-                class="inline-flex items-center justify-center gap-2 bg-[#5865F2] hover:bg-[#4752C4] text-white px-8 py-3 rounded-button transition-colors duration-300 whitespace-nowrap"
-              >
-                <i class="ri-information-fill ri-lg"></i>
-                Roblox Group
-              </a>
+          <h2 class="text-4xl font-bold mb-16 text-center">
+            Frequently Asked Questions
+          </h2>
+          <div class="max-w-3xl mx-auto">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item py-6">
+              <div class="flex justify-between items-center cursor-pointer">
+                <h3 class="text-xl font-semibold">
+                  What types of clothing do you offer?
+                </h3>
+                <div class="w-8 h-8 flex items-center justify-center faq-toggle">
+                  <i class="ri-arrow-down-s-line ri-xl text-white"></i>
+                </div>
+              </div>
+              <div class="faq-answer pt-4">
+                <p class="text-gray-400">
+                  We offer all types of clothing, excluding NSFW, graphic content, inappropriate or harmful images/speech and anything that violates Roblox's Terms of Service and Guidelines.
+                </p>
               </div>
             </div>
-            <div class="flex-1 relative">
-              <div
-                class="absolute -inset-4 bg-gradient-to-r from-[#5865F2] to-purple-600 rounded-lg opacity-30 blur-lg"
-              ></div>
-              <div class="relative bg-gray-900 p-8 rounded-lg">
-                <div class="grid grid-cols-2 gap-6">
-                  <div class="bg-gray-800 p-6 rounded">
-                    <div
-                      class="w-12 h-12 flex items-center justify-center bg-[#5865F2] rounded-full mb-4"
-                    >
-                      <i class="ri-team-fill ri-xl text-white"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Active Members</h3>
-                    <p class="text-gray-400">Join over 5,000+ members</p>
-                  </div>
-                  <div class="bg-gray-800 p-6 rounded">
-                    <div
-                      class="w-12 h-12 flex items-center justify-center bg-[#5865F2] rounded-full mb-4"
-                    >
-                      <i class="ri-message-3-fill ri-xl text-white"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Daily Discussions</h3>
-                    <p class="text-gray-400">20+ active channels</p>
-                  </div>
-                  <div class="bg-gray-800 p-6 rounded">
-                    <div
-                      class="w-12 h-12 flex items-center justify-center bg-[#5865F2] rounded-full mb-4"
-                    >
-                      <i class="ri-calendar-event-fill ri-xl text-white"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Weekly Events</h3>
-                    <p class="text-gray-400">Live sessions & workshops</p>
-                  </div>
-                  <div class="bg-gray-800 p-6 rounded">
-                    <div
-                      class="w-12 h-12 flex items-center justify-center bg-[#5865F2] rounded-full mb-4"
-                    >
-                      <i class="ri-gift-fill ri-xl text-white"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Exclusive Perks</h3>
-                    <p class="text-gray-400">Member-only benefits</p>
-                  </div>
+            <!-- FAQ Item 2 -->
+            <div class="faq-item py-6">
+              <div class="flex justify-between items-center cursor-pointer">
+                <h3 class="text-xl font-semibold">
+                  How long will my order take?
+                </h3>
+                <div class="w-8 h-8 flex items-center justify-center faq-toggle">
+                  <i class="ri-arrow-down-s-line ri-xl text-white"></i>
                 </div>
+              </div>
+              <div class="faq-answer pt-4">
+                <p class="text-gray-400">
+                  Our designers work efficiently to ensure the highest quality of apparel your design will take no longer than 3-7 days.
+                </p>
+              </div>
+            </div>
+            <!-- FAQ Item 3 -->
+            <div class="faq-item py-6">
+              <div class="flex justify-between items-center cursor-pointer">
+                <h3 class="text-xl font-semibold">
+                  How do I put in an order?
+                </h3>
+                <div class="w-8 h-8 flex items-center justify-center faq-toggle">
+                  <i class="ri-arrow-down-s-line ri-xl text-white"></i>
+                </div>
+              </div>
+              <div class="faq-answer pt-4">
+                <p class="text-gray-400">
+                  Join our communications server linked below! All information regarding orders will be there.
+                </p>
+              </div>
+            </div>
+            <!-- FAQ Item 4 -->
+            <div class="faq-item py-6">
+              <div class="flex justify-between items-center cursor-pointer">
+                <h3 class="text-xl font-semibold">
+                  What's the pricing structure?
+                </h3>
+                <div class="w-8 h-8 flex items-center justify-center faq-toggle">
+                  <i class="ri-arrow-down-s-line ri-xl text-white"></i>
+                </div>
+              </div>
+              <div class="faq-answer pt-4">
+                <p class="text-gray-400">
+                  Our pricing depends on the complexity of the clothing/asset. Our minimum pricing for each shirt is r$350.
+                </p>
+              </div>
+            </div>
+             <!-- FAQ Item 5 -->
+             <div class="faq-item py-6">
+              <div class="flex justify-between items-center cursor-pointer">
+                <h3 class="text-xl font-semibold">
+                Can you recreate real-life clothing designs?
+                </h3>
+                <div class="w-8 h-8 flex items-center justify-center faq-toggle">
+                  <i class="ri-arrow-down-s-line ri-xl text-white"></i>
+                </div>
+              </div>
+              <div class="faq-answer pt-4">
+                <p class="text-gray-400">
+                  Yes, as long as it follows our ordering guidelines.
+                </p>
+              </div>
+            </div>
+            <!-- FAQ Item 6 -->
+            <div class="faq-item py-6">
+              <div class="flex justify-between items-center cursor-pointer">
+                <h3 class="text-xl font-semibold">
+                  Can I order clothing assets? e.g: Logos, Awards, etc.
+                </h3>
+                <div class="w-8 h-8 flex items-center justify-center faq-toggle">
+                  <i class="ri-arrow-down-s-line ri-xl text-white"></i>
+                </div>
+              </div>
+              <div class="faq-answer pt-4">
+                <p class="text-gray-400">
+                  Yes! For more information, speak with a designer via our communications server.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
+
     <!-- Footer -->
-    <footer class="py-12 bg-gray-950">
+    <footer id="footer" class="py-12" style="background-color: black;">
       <div class="container mx-auto px-6">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="mb-8 md:mb-0">
-            <a href="#" class="text-2xl font-['Pacifico'] text-white">Qvamar</a>
+            <a href="#" class="text-2xl font-['Pacifico'] text-white">Qamar</a>
             <p class="text-gray-400 mt-2">© 2025 All Rights Reserved</p>
           </div>
           <div class="flex space-x-6">
@@ -695,6 +713,31 @@
       </div>
     </footer>
     <!-- Scripts -->
+    <script id="faq-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".flex");
+          question.addEventListener("click", function () {
+            // Toggle active class
+            item.classList.toggle("active");
+          });
+        });
+      });
+    </script>
+    <script id="parallax-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        window.addEventListener("scroll", function () {
+          const scrollPosition = window.pageYOffset;
+          // Parallax effect for hero section
+          document.getElementById("hero").style.backgroundPositionY =
+            `${scrollPosition * 0.5}px`;
+          // Parallax effect for star field
+          document.getElementById("star-field").style.transform =
+            `translateY(${scrollPosition * 0.2}px)`;
+        });
+      });
+    </script>
     <script id="navigation-script">
       document.addEventListener("DOMContentLoaded", function () {
         // Mobile menu toggle
@@ -740,6 +783,100 @@
         });
       });
     </script>
+    <div class="stars" id="stars"></div>
+    <script id="space-effects">
+      // Create stars for a specific container
+      function createStars(container, count = 30, sizeMultiplier = 1) {
+        if (!container) return;
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement('div');
+          const size = (0.5 + Math.random() * 1.5) * sizeMultiplier;
+          const posX = Math.random() * 100;
+          const posY = Math.random() * 100;
+          const duration = 3 + Math.random() * 4;
+          const delay = Math.random() * 5;
+          const opacity = 0.2 + Math.random() * 0.6;
+          star.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${posX}%;
+            top: ${posY}%;
+            background-color: var(--star-color);
+            border-radius: 50%;
+            animation: twinkle ${duration}s ease-in-out ${delay}s infinite;
+            opacity: ${opacity};
+            will-change: transform, opacity;
+            pointer-events: none !important;
+            touch-action: none;
+            -webkit-tap-highlight-color: transparent;
+            z-index: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;`;
+          
+          fragment.appendChild(star);
+        }
+        
+        container.appendChild(fragment);
+      }
+      
+      // Create stars for all sections with data-stars attribute
+      function initAllStars() {
+        // Hero section (more stars)
+        const heroStars = document.createElement('div');
+        heroStars.className = 'absolute inset-0';
+        const heroSection = document.getElementById('hero');
+        heroSection.insertBefore(heroStars, heroSection.firstChild);
+        createStars(heroStars, 100, 1.2);
+        
+        // Other sections (fewer stars)
+        document.querySelectorAll('[data-stars]').forEach(section => {
+          const starsContainer = document.createElement('div');
+          starsContainer.className = 'absolute inset-0 overflow-hidden';
+          section.insertBefore(starsContainer, section.firstChild);
+          section.style.position = 'relative';
+          createStars(starsContainer, 40, 0.8);
+        });
+      }
+      
+      // Shooting stars functionality removed
+      
+      // Create meteors
+      function createMeteor() {
+        const meteor = document.createElement('div');
+        meteor.className = 'meteor';
+        meteor.style.left = `${Math.random() * 100}%`; // Full width coverage
+        meteor.style.top = `${-100}px`;
+        meteor.style.opacity = '0';
+        meteor.style.width = `${100 + Math.random() * 150}px`; // Smaller meteors
+        meteor.style.filter = `hue-rotate(${Math.random() * 60 - 30}deg) brightness(1.5)`; // Slight color variation
+        document.body.appendChild(meteor);
+        
+        // Remove meteor after animation
+        setTimeout(() => {
+          meteor.remove();
+        }, 4000);
+      }
+      
+      // Initialize everything when the DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        // Initialize stars for all sections except FAQ
+        initAllStars();
+        
+        // Initialize stars specifically for FAQ section with lower z-index
+        const faqStarsContainer = document.getElementById('faq-stars');
+        if (faqStarsContainer) {
+          createStars(faqStarsContainer, 40, 0.8);
+        }
+        
+        // Create meteors less frequently
+        setInterval(createMeteor, 4000);
+      });
+    </script>
+    
     <script id="hero-animation-script">
       document.addEventListener("DOMContentLoaded", function () {
         // Hero section animations
@@ -899,6 +1036,49 @@
         }
       });
     </script>
+    <script id="parallax-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        window.addEventListener("scroll", function () {
+          const scrollPosition = window.pageYOffset;
+          // Parallax effect for hero section
+          document.getElementById("hero").style.backgroundPositionY =
+            `${scrollPosition * 0.5}px`;
+          // Parallax effect for star field
+          document.getElementById("star-field").style.transform =
+            `translateY(${scrollPosition * 0.2}px)`;
+        });
+      });
+    </script>
+    <!-- Reveal on Scroll Animation -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Get all sections except hero
+        const sections = document.querySelectorAll('section:not(#hero)');
+        
+        // Add reveal class to all sections
+        sections.forEach(section => {
+          section.classList.add('section-reveal');
+        });
+
+        // Create Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('reveal-active');
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observe each section
+        sections.forEach(section => {
+          observer.observe(section);
+        });
+      });
+    </script>
+    
     <script id="clothing-filter-script">
       document.addEventListener("DOMContentLoaded", function () {
         const categoryButtons = document.querySelectorAll(".category-btn");
@@ -930,18 +1110,7 @@
         });
       });
     </script>
-    <script id="faq-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        const faqItems = document.querySelectorAll(".faq-item");
-        faqItems.forEach((item) => {
-          const question = item.querySelector(".flex");
-          question.addEventListener("click", function () {
-            // Toggle active class
-            item.classList.toggle("active");
-          });
-        });
-      });
-    </script>
+   
     <script id="parallax-script">
       document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener("scroll", function () {
