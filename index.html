@@ -319,8 +319,8 @@
       </div>
     </section>
     <!--UTOPIA -->
-    <section id="utopia" class="py-24 bg-black relative overflow-hidden">
-      <div class="stars-container absolute inset-0 z-0"></div>
+    <section id="utopia" class="py-24 relative overflow-hidden" style="background: radial-gradient(ellipse at center, var(--space-darker) 0%, var(--space-dark) 100%);">
+      <div class="absolute inset-0" id="utopia-stars"></div>
       <div class="container mx-auto px-6 relative z-10">
         <div
           class="flex flex-col lg:flex-row items-center justify-between gap-12"
@@ -433,9 +433,11 @@
       </div>
     </section>
     <!-- Clothing Showcase Section -->
-    <section id="clothing" class="py-24 relative overflow-hidden">
+    <section id="clothing" class="py-24 relative overflow-hidden" style="background: radial-gradient(ellipse at center, var(--space-darker) 0%, var(--space-dark) 100%);">
+      <!-- Star Background -->
+      <div class="absolute inset-0" id="clothing-stars"></div>
       <!-- Background Pattern -->
-      <div class="absolute inset-0 bg-gray-950">
+      <div class="absolute inset-0 bg-gray-950 opacity-50">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#1f2937_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
         <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-amber-900/10"></div>
       </div>
@@ -927,6 +929,12 @@
       document.addEventListener('DOMContentLoaded', () => {
         // Initialize stars for all sections
         initAllStars();
+        
+        // Initialize stars for utopia section
+        createStars(document.getElementById('utopia-stars'), 100, 1.5);
+        
+        // Initialize stars for clothing section
+        createStars(document.getElementById('clothing-stars'), 100, 1.5);
         
         // Initialize stars specifically for FAQ section with lower z-index
         const faqStarsContainer = document.getElementById('faq-stars');
