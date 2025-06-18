@@ -81,12 +81,16 @@
       
       body {
         font-family: 'Montserrat', sans-serif;
-        background: radial-gradient(ellipse at bottom, var(--space-darker) 0%, var(--space-darker) 100%);
+        background: var(--space-darker);
         color: #e0e0e0;
         overflow-x: hidden;
         min-height: 100vh;
         position: relative;
         line-height: 1.6;
+      }
+      
+      section {
+        background: var(--space-darker);
       }
 
 
@@ -287,7 +291,7 @@
     <!-- Hero Section -->
     <section
       id="hero"
-      class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[var(--space-darker)] to-[var(--space-dark)]"
+      class="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <div class="absolute inset-0" id="star-field"></div>
       <div class="container mx-auto px-6 z-10">
@@ -319,7 +323,8 @@
       </div>
     </section>
     <!--UTOPIA -->
-    <section id="utopia" class="py-24 relative overflow-hidden" style="background: radial-gradient(ellipse at center, var(--space-darker) 0%, var(--space-dark) 100%);">
+    <section id="utopia" class="py-24 relative overflow-hidden">
+      <!-- Star Background -->
       <div class="absolute inset-0" id="utopia-stars"></div>
       <div class="container mx-auto px-6 relative z-10">
         <div
@@ -366,7 +371,9 @@
       </div>
     </section>
     <!-- Organizations Section -->
-    <section id="organizations" class="py-24 relative overflow-hidden bg-black" data-stars>
+    <section id="organizations" class="py-24 relative overflow-hidden" data-stars>
+      <!-- Star Background -->
+      <div class="absolute inset-0" id="organizations-stars"></div>
       <div class="container mx-auto px-6 relative z-10">
         <h2 class="text-4xl font-bold mb-16 text-center text-white">
           <span class="relative inline-block">
@@ -391,12 +398,11 @@
           <div class="bg-gray-900/80 backdrop-blur-sm rounded-xl p-6 transform hover:scale-105 transition-all duration-300 border border-gray-800/50 overflow-hidden group">
             <div class="relative h-56 mb-6 rounded-lg overflow-hidden">
               <img src="https://i.postimg.cc/4xvtFVMm/image.png" 
-                   alt="Roleplay Community" 
+                   alt="United States Army" 
                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
               <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
               <div class="absolute bottom-0 left-0 p-4 w-full">
-                <h3 class="text-xl font-bold text-white">Roleplay Community</h3>
-               
+                <h3 class="text-xl font-bold text-white">Coimmunity Roleplay</h3>
                 <span class="inline-block mt-2 px-3 py-1 text-sm font-semibold rounded-full bg-green-600/90 text-white">Currently Employed</span>
               </div>
             </div>
@@ -433,13 +439,12 @@
       </div>
     </section>
     <!-- Clothing Showcase Section -->
-    <section id="clothing" class="py-24 relative overflow-hidden" style="background: radial-gradient(ellipse at center, var(--space-darker) 0%, var(--space-dark) 100%);">
+    <section id="clothing" class="py-24 relative overflow-hidden">
       <!-- Star Background -->
       <div class="absolute inset-0" id="clothing-stars"></div>
       <!-- Background Pattern -->
-      <div class="absolute inset-0 bg-gray-950 opacity-50">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#1f2937_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
-        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-amber-900/10"></div>
+      <div class="absolute inset-0">
+        <div class="absolute inset-0"></div>
       </div>
       <div class="container mx-auto px-6 relative z-10">
         <h2 class="text-4xl font-bold mb-4 text-center">Clothing Showcase</h2>
@@ -617,8 +622,9 @@
     </section>
 
       <!-- FAQ Section -->
-      <section id="faq" class="py-24 bg-black relative overflow-hidden">
-        <div class="stars-container absolute inset-0 z-0"></div>
+      <section id="faq" class="py-24 relative overflow-hidden">
+        <!-- Star Background -->
+        <div class="absolute inset-0" id="faq-stars"></div>
         <div class="container mx-auto px-6 relative z-10">
           <h2 class="text-4xl font-bold mb-16 text-center">
             Frequently Asked Questions
@@ -725,8 +731,9 @@
       </section>
 
     <!-- Footer -->
-    <footer id="footer" class="py-12 relative overflow-hidden" style="background-color: black;">
-      <div class="stars-container absolute inset-0 z-0"></div>
+    <footer id="footer" class="py-12 relative overflow-hidden">
+      <!-- Star Background -->
+      <div class="absolute inset-0" id="footer-stars"></div>
       <div class="container mx-auto px-6 relative z-10">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="mb-8 md:mb-0">
@@ -876,34 +883,28 @@
       // Create stars for all sections
       function initAllStars() {
         // Hero section (more stars)
-        const heroStars = document.createElement('div');
-        heroStars.className = 'absolute inset-0';
+        const heroStars = document.getElementById('star-field');
+        if (heroStars) createStars(heroStars, 100, 1.2);
         
-        // FAQ section stars
-        const faqSection = document.getElementById('faq');
-        if (faqSection) {
-          const faqStars = faqSection.querySelector('.stars-container');
-          if (faqStars) createStars(faqStars, 40, 1.2);
-        }
+        // UTOPIA section
+        const utopiaStars = document.getElementById('utopia-stars');
+        if (utopiaStars) createStars(utopiaStars, 60, 1.0);
         
-        // Footer section stars
-        const footerSection = document.getElementById('footer');
-        if (footerSection) {
-          const footerStars = footerSection.querySelector('.stars-container');
-          if (footerStars) createStars(footerStars, 30, 1);
-        }
-        const heroSection = document.getElementById('hero');
-        heroSection.insertBefore(heroStars, heroSection.firstChild);
-        createStars(heroStars, 100, 1.2);
+        // Organizations section
+        const orgStars = document.getElementById('organizations-stars');
+        if (orgStars) createStars(orgStars, 60, 1.0);
         
-        // Other sections (fewer stars)
-        document.querySelectorAll('[data-stars]').forEach(section => {
-          const starsContainer = document.createElement('div');
-          starsContainer.className = 'absolute inset-0 overflow-hidden';
-          section.insertBefore(starsContainer, section.firstChild);
-          section.style.position = 'relative';
-          createStars(starsContainer, 40, 0.8);
-        });
+        // Clothing section
+        const clothingStars = document.getElementById('clothing-stars');
+        if (clothingStars) createStars(clothingStars, 60, 1.0);
+        
+        // FAQ section
+        const faqStars = document.getElementById('faq-stars');
+        if (faqStars) createStars(faqStars, 60, 1.0);
+        
+        // Footer section
+        const footerStars = document.getElementById('footer-stars');
+        if (footerStars) createStars(footerStars, 40, 0.8);
       }
       
       // Shooting stars functionality removed
